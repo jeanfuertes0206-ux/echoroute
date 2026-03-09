@@ -3,6 +3,7 @@
 <head>
  <meta charset="UTF-8">
  <title>EchoRoute - Navigation</title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
  <style>
    body {
      font-family: 'Poppins', sans-serif;
@@ -11,17 +12,8 @@
      padding: 20px;
    }
 
-
-   a {
- text-decoration: none; /* removes underline */
-}
-
-
-a:hover {
-  color: #f1c40f;
-  transition: 0.3s ease;
-}
-
+   a { text-decoration: none; }
+   a:hover { color: #f1c40f; transition: 0.3s ease; }
 
    /* Title bar */
    .title-bar {
@@ -30,15 +22,8 @@ a:hover {
      margin-bottom: 20px;
      font-size: 35px;
    }
-   .title-bar i {
-     font-size: 30px;
-     margin-right: 30px;
-     cursor: pointer;
-   }
-   .title-bar h2 {
-     margin: 0;
-   }
-
+   .title-bar i { font-size: 30px; margin-right: 30px; cursor: pointer; }
+   .title-bar h2 { margin: 0; }
 
    /* Quick actions */
    .quick-actions {
@@ -59,44 +44,17 @@ a:hover {
      justify-content: center;
      gap: 8px;
    }
-   .action-btn.location {
-     background: #f1c40f;
-     color: #000;
-     margin-bottom: 20px;
-     margin-top: 10px;
-   }
-
-
-   .action-btn.saved {
-     background: #fff;
-     color: #333;
-     margin-bottom: 20px;
-     margin-top: 10px;
-   }
-
-
+   .action-btn.location { background: #f1c40f; color: #000; margin: 10px 0 20px; }
+   .action-btn.saved { background: #fff; color: #333; margin: 10px 0 20px; }
    .action-btn:hover {
      background: #ffdf7d;
      transition: 0.5s ease;
      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
    }
 
-
    /* Recent destinations */
-   .section-title {
-     font-size: 25px;
-     font-weight: bold;
-     margin-bottom: 10px;
-   }
-
-
-   .destinations {
-     display: flex;
-     flex-direction: column;
-     gap: 10px;
-   }
-
-
+   .section-title { font-size: 25px; font-weight: bold; margin-bottom: 10px; }
+   .destinations { display: flex; flex-direction: column; gap: 10px; }
    .destination {
      display: flex;
      height: 80px;
@@ -106,160 +64,149 @@ a:hover {
      border-radius: 18px;
      background: #fff;
      cursor: pointer;
-     border: 0px;
      margin: 10px;
    }
-
-
-   header {
-     position: sticky;  
-     top: 0;                /* stick to the top */
-     left: 0;
-     width: 100%;           /* full width */
-     padding: 15px 20px;
-     font-size: 20px;
-     font-weight: bold;
-     z-index: 100; 
-     backdrop-filter: blur(8px);
-   }
-
-
-   .destination i {
-     font-size: 20px;
-     margin-right: 20px;
-     margin-left: 10px;
-     color: #3498db;
-   }
-
-
-   .destination span {
-     font-size: 20px;
-   }
-
-
+   .destination i { font-size: 20px; margin: 0 20px 0 10px; color: #3498db; }
+   .destination span { font-size: 20px; }
    .destination:hover {
      background: #f1c40f;
      transition: 0.5s ease;
-     box-shadow: 0 6px 14px rgba(0,0,0,0.15) ;
+     box-shadow: 0 6px 14px rgba(0,0,0,0.15);
    }
 
-
-span {
- align-content: center;
-}
-
-
-body {
-     font-family: Arial, sans-serif;
-     background: #f4f6f9;
-     padding: 40px;
+   header {
+     position: sticky; top: 0; left: 0; width: 100%;
+     padding: 15px 20px; font-size: 20px; font-weight: bold;
+     z-index: 100; backdrop-filter: blur(8px);
    }
-
 
    .search-container {
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     gap: 10px;
-     width: 80%;
-     margin: auto;
+     display: flex; justify-content: center; align-items: center;
+     gap: 10px; width: 80%; margin: auto;
    }
-
-
    .search-input {
-     flex: 1;
-     padding: 12px;
-     border: 1px solid #ccc;
-     border-radius: 15px;
-     font-size: 20px;
-     margin: 10px;
+     flex: 1; padding: 12px; border: 1px solid #ccc;
+     border-radius: 15px; font-size: 20px; margin: 10px;
    }
-
-
    .search-btn {
-     padding: 12px 20px;
-     background: #3498db;
-     color: #fff;
-     border: none;
-     border-radius: 15px; /* more rounded corners */
-     font-size: 20px;
-     font-weight: bold;
-     cursor: pointer;
+     padding: 12px 20px; background: #3498db; color: #fff;
+     border: none; border-radius: 15px;
+     font-size: 20px; font-weight: bold; cursor: pointer;
      transition: background 0.2s ease;
    }
+   .search-btn:hover { background: #2980b9; transition: 0.5s ease; }
 
-
-   .search-btn:hover {
-     background: #2980b9;
-     transition: 0.5s ease;
+   /* Output area styled like a card */
+   #output {
+     margin-top: 20px;
+     padding: 15px;
+     background: #fff;
+     border-radius: 12px;
+     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+     font-size: 18px;
+     text-align: center;
+     width: 60%;
+     margin-left: auto;
+     margin-right: auto;
    }
-
-
  </style>
- <!-- Font Awesome for icons -->
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
  <!-- Title bar -->
  <header>
- <div class="title-bar">
-   <a href="dashboard.html">
-   <i class="fa-solid fa-arrow-left"></i>
- </a>
-   <h2>Navigation</h2>
- </div>
+   <div class="title-bar">
+     <a href="dashboard.html">
+       <i class="fa-solid fa-arrow-left"></i>
+     </a>
+     <h2>Navigation</h2>
+   </div>
  </header>
 
-
-
-
-<div class="search-container">
+ <!-- Search -->
+ <div class="search-container">
    <input type="text" class="search-input" placeholder="Enter destination address">
-   <button class="search-btn">
+   <button class="search-btn" onclick="voiceInput()">
      <i class="fa-solid fa-microphone"></i>
    </button>
-   </div>
-   <center>
-
-
-   <button class="search-btn" style="margin-bottom: 20px; margin-top: 20px; width: 350px;">
-   <i class="fa-solid fa-magnifying-glass"></i>
-   <span>Find Route</span>
+ </div>
+ <center>
+   <button class="search-btn" style="margin:20px 0; width:350px;" onclick="findRoute()">
+     <i class="fa-solid fa-magnifying-glass"></i>
+     <span>Find Route</span>
    </button>
-   </center>
-
-
-
+ </center>
 
  <!-- Quick actions -->
  <div class="quick-actions">
-   <button class="action-btn location">
+   <button class="action-btn location" onclick="useCurrentLocation()">
      <i class="fa-solid fa-location-crosshairs"></i> Use Current Location
    </button>
-   <button class="action-btn saved">
+   <button class="action-btn saved" onclick="showSavedPlaces()">
      <i class="fa-solid fa-map-pin"></i> Saved Places
    </button>
  </div>
 
-
  <!-- Recent destinations -->
  <div class="section-title">Recent Destinations</div>
-   <div class="destinations">
-     <center>
-   <button class="destination">
-     <i class="fa-solid fa-house"></i>
-     <span>Home</span>
-   </button>
-   <button class="destination">
-     <i class="fa-solid fa-briefcase"></i>
-     <span>Work</span>
-   </button>
-   <button class="destination">
-     <i class="fa-solid fa-tree"></i>
-     <span>Central Park</span>
-   </button>
- </center>
+ <div class="destinations">
+   <center>
+     <button class="destination" onclick="goTo('Home')">
+       <i class="fa-solid fa-house"></i>
+       <span>Home</span>
+     </button>
+     <button class="destination" onclick="goTo('Work')">
+       <i class="fa-solid fa-briefcase"></i>
+       <span>Work</span>
+     </button>
+     <button class="destination" onclick="goTo('Central Park')">
+       <i class="fa-solid fa-tree"></i>
+       <span>Central Park</span>
+     </button>
+   </center>
  </div>
+
+ <!-- Output area -->
+ <p id="output"></p>
+
+ <script>
+   async function findRoute() {
+     const dest = document.querySelector('.search-input').value;
+     try {
+       const response = await fetch(`http://localhost:4000/api/getRoute?dest=${encodeURIComponent(dest)}`);
+       const data = await response.json();
+       document.getElementById('output').innerText = `Route to ${dest}: ${data.route}`;
+     } catch (err) {
+       document.getElementById('output').innerText = 'Error finding route';
+     }
+   }
+
+   async function useCurrentLocation() {
+     try {
+       const response = await fetch('http://localhost:4000/api/geolinker');
+       const data = await response.json();
+       document.getElementById('output').innerText = `Current location: Lat ${data.lat}, Lon ${data.lon}`;
+     } catch (err) {
+       document.getElementById('output').innerText = 'Error getting location';
+     }
+   }
+
+   async function showSavedPlaces() {
+     try {
+       const response = await fetch('http://localhost:4000/api/savedPlaces');
+       const data = await response.json();
+       document.getElementById('output').innerText = `Saved places: ${data.places.join(', ')}`;
+     } catch (err) {
+       document.getElementById('output').innerText = 'Error loading saved places';
+     }
+   }
+
+   function goTo(place) {
+     document.getElementById('output').innerText = `Navigating to ${place}...`;
+   }
+
+   function voiceInput() {
+     document.getElementById('output').innerText = "Voice input not implemented yet.";
+   }
+ </script>
 </body>
 </html>
-
