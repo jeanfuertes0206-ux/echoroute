@@ -1,469 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>EchoRoute - Dashboard</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/feather-icons"></script>
-
-
-
-
-<style>
-*{
- margin:0;
- padding:0;
- box-sizing:border-box;
- font-family:'Poppins', sans-serif;
-}
-
-
-a {
- text-decoration: none; /* removes underline */
- color: #3498db;        /* optional: set link color */
-}
-
-
-body{
- background:#f3f4f6;
- min-height:100vh;
- display:flex;
- flex-direction:column;
- font-family: 'Poppins', sans-serif;
-}
-
-
-
-
-/* Top Bar */
-.top-bar{
- display:flex;
- justify-content:space-between;
- align-items:center;
- padding:18px 25px;
- background:#ffffff;
- box-shadow:0 2px 8px rgba(0,0,0,0.05);
-}
-
-
-
-
-.logo{
- display:flex;
- align-items:center;
- gap:8px;
- font-weight:600;
- color:#0e8a94;
-}
-
-
-
-
-.icons{
- display:flex;
- gap:18px;
- align-items:center;
-}
-
-
-
-
-.icons i{
- cursor:pointer;
-}
-
-
-
-
-/* Content */
-.container{
- padding:30px 25px 100px 25px;
- flex:1;
-}
-
-
-
-
-h1{
- font-size:26px;
- margin-bottom:6px;
-}
-
-
-
-
-.subtitle{
- color:#666;
- margin-bottom:25px;
-}
-
-
-
-
-/* SOS Button */
-.sos{
- background:#e04141;
- color:white;
- padding:16px;
- border:none;
- width:100%;
- border-radius:16px;
- font-weight:600;
- font-size:16px;
- cursor:pointer;
- margin-bottom:30px;
- transition:0.2s ease;
- animation: blink 1.5s infinite; /* Apply animation */;
-}
-@keyframes blink {
-     0%   { background-color: #eb0909; }
-     50%  { background-color: #185ccc; }
-     100% { background-color: #eb0909; }
+ <meta charset="UTF-8">
+ <title>EchoRoute - Navigation</title>
+ <style>
+   body {
+     font-family: 'Poppins', sans-serif;
+     background: #e3e5e8;
+     margin: 80px;
+     padding: 20px;
    }
 
 
-.sos:hover{
- background:#c73333;
+   a {
+ text-decoration: none; /* removes underline */
 }
 
 
-.section-title{
- font-weight:600;
- margin-bottom:15px;
+a:hover {
+  color: #f1c40f;
+  transition: 0.3s ease;
 }
 
 
-.card-grid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:15px;
- margin-bottom:30px;
-}
-
-
-
-
-.card{
- padding:25px;
- border-radius:18px;
- background:#ffffff;
- text-align:center;
- cursor:pointer;
- transition:0.2s ease;
- border:2px solid transparent;
-}
-
-
-
-
-.card:hover{
- transform:translateY(-3px);
-}
-
-
-
-
-.card.active{
- border:2px solid #0e8a94;
- background:#0e8a94;
- color:white;
-}
-
-
-
-
-/* Bottom Navigation */
-.bottom-nav{
- position:fixed;
- bottom:0;
- width:100%;
- background:#ffffff;
- display:flex;
- justify-content:space-around;
- padding:12px 0;
- box-shadow:0 -2px 8px rgba(0,0,0,0.05);
-}
-
-
-
-
-.bottom-nav div{
- text-align:center;
- font-size:12px;
- cursor:pointer;
-}
-
-
-
-
-.bottom-nav i{
- display:block;
- margin-bottom:4px;
-}
-
-
-.active-nav{
- color:#0e8a94;
-}
-
-
- .dash-btn {
-     width: 50%;          /* wider tile */
-     height: 180px;         /* taller tile */
-     background: #fff;
-     border: none;
-     border-radius: 16px;   /* more rounded corners */
-     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+   /* Title bar */
+   .title-bar {
      display: flex;
-     flex-direction: column;
+     align-items: center;
+     margin-bottom: 20px;
+     font-size: 35px;
+   }
+   .title-bar i {
+     font-size: 30px;
+     margin-right: 30px;
+     cursor: pointer;
+   }
+   .title-bar h2 {
+     margin: 0;
+   }
+
+
+   /* Quick actions */
+   .quick-actions {
+     display: flex;
+     gap: 15px;
+     margin-bottom: 20px;
+   }
+   .action-btn {
+     flex: 1;
+     padding: 15px;
+     border-radius: 15px;
+     border: none;
+     font-size: 20px;
+     font-weight: bold;
+     cursor: pointer;
+     display: flex;
      align-items: center;
      justify-content: center;
+     gap: 8px;
+   }
+   .action-btn.location {
+     background: #f1c40f;
+     color: #000;
+     margin-bottom: 20px;
+     margin-top: 10px;
+   }
+
+
+   .action-btn.saved {
+     background: #fff;
+     color: #333;
+     margin-bottom: 20px;
+     margin-top: 10px;
+   }
+
+
+   .action-btn:hover {
+     background: #ffdf7d;
+     transition: 0.5s ease;
+     box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+   }
+
+
+   /* Recent destinations */
+   .section-title {
+     font-size: 25px;
+     font-weight: bold;
+     margin-bottom: 10px;
+   }
+
+
+   .destinations {
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+   }
+
+
+   .destination {
+     display: flex;
+     height: 80px;
+     width: 55%;
+     align-items: center;
+     padding: 12px;
+     border-radius: 18px;
+     background: #fff;
      cursor: pointer;
-     transition: transform 0.2s ease, box-shadow 0.2s ease;
+     border: 0px;
      margin: 10px;
    }
 
 
-   .dash-btn:hover {
-     transform: translateY(-6px);
-     box-shadow: 0 6px 14px rgba(0,0,0,0.15);
-     background: ;
-   }
-
-
-   .dash-btn i {
-     font-size: 40px;       /* larger icon */
-     color: #3498db;
-     margin-bottom: 12px;
-   }
-
-
-   .dash-btn span {
-     font-size: 18px;       /* larger text */
-     font-weight: bold;
-     color: #333;
-     text-align: center;
-   }
-
-
-   .button-container {
-     display: flex;          /* enables flexbox */
-     gap: 30px;              /* space between buttons */
-     justify-content: center;/* center them horizontally */
-   }
-
-
    header {
-     position: sticky;
+     position: sticky;  
      top: 0;                /* stick to the top */
      left: 0;
      width: 100%;           /* full width */
+     padding: 15px 20px;
+     font-size: 20px;
+     font-weight: bold;
+     z-index: 100; 
+     backdrop-filter: blur(8px);
    }
 
 
-</style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+   .destination i {
+     font-size: 20px;
+     margin-right: 20px;
+     margin-left: 10px;
+     color: #3498db;
+   }
+
+
+   .destination span {
+     font-size: 20px;
+   }
+
+
+   .destination:hover {
+     background: #f1c40f;
+     transition: 0.5s ease;
+     box-shadow: 0 6px 14px rgba(0,0,0,0.15) ;
+   }
+
+
+span {
+ align-content: center;
+}
+
+
+body {
+     font-family: Arial, sans-serif;
+     background: #f4f6f9;
+     padding: 40px;
+   }
+
+
+   .search-container {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     gap: 10px;
+     width: 80%;
+     margin: auto;
+   }
+
+
+   .search-input {
+     flex: 1;
+     padding: 12px;
+     border: 1px solid #ccc;
+     border-radius: 15px;
+     font-size: 20px;
+     margin: 10px;
+   }
+
+
+   .search-btn {
+     padding: 12px 20px;
+     background: #3498db;
+     color: #fff;
+     border: none;
+     border-radius: 15px; /* more rounded corners */
+     font-size: 20px;
+     font-weight: bold;
+     cursor: pointer;
+     transition: background 0.2s ease;
+   }
+
+
+   .search-btn:hover {
+     background: #2980b9;
+     transition: 0.5s ease;
+   }
+
+
+ </style>
+ <!-- Font Awesome for icons -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-
-
-
-
-<!-- Login Protection -->
-<script>
-if(localStorage.getItem("isLoggedIn") !== "true"){
- window.location.href = "MAIN.html";
-}
-</script>
-
-
-<header>
-<!-- Top Bar -->
-<div class="top-bar">
- <div class="logo">
-   <i data-feather="eye"></i>
-   EchoRoute
+ <!-- Title bar -->
+ <header>
+ <div class="title-bar">
+   <a href="dashboard.html">
+   <i class="fa-solid fa-arrow-left"></i>
+ </a>
+   <h2>Navigation</h2>
  </div>
+ </header>
 
 
 
 
- <div class="icons">
-   <i data-feather="settings"></i>
-   <i data-feather="log-out" onclick="logout()"></i>
- </div>
-</div>
-</header>
-
-
-<!-- Main Content -->
-<div class="container">
-
-
-
-
- <h1>Hello, Navigator!</h1>
- <p class="subtitle">Where would you like to go today?</p>
-
-
-
-
- <button class="sos" style="font-size: 25px">
-   <i class="fa-solid fa-warning" style="font-size: 25px; margin: 10px;"></i>
-    Emergency SOS
- </button>
-
-
-
-
- <div class="section-title">Travel Preferences</div>
-
-
-
-
- <div class="card-grid">
-   <div class="card active" onclick="selectCard(this)">
-     <i data-feather="navigation"></i>
-     <p>Walking</p>
-   </div>
-
-
-
-
-   <div class="card" onclick="selectCard(this)">
-     <i data-feather="truck"></i>
-     <p>Public Transport</p>
-   </div>
-
-
-
-
-   <div class="card" onclick="selectCard(this)">
-     <i data-feather="zap"></i>
-     <p>In a Hurry</p>
-   </div>
-
-
-
-
-   <div class="card" onclick="selectCard(this)">
-     <i data-feather="users"></i>
-     <p>Less Crowded</p>
-   </div>
- </div>
-
-
-
-
-</div>
-
-
-
-
-<!-- Bottom Navigation -->
-<div class="bottom-nav">
- <div class="active-nav">
-   <i data-feather="home"></i>
-   Home
- </div>
- <div>
-   <i data-feather="map-pin"></i>
-   Navigate
- </div>
- <div>
-   <i data-feather="camera"></i>
-   Camera
- </div>
- <div>
-   <i data-feather="settings"></i>
-   Settings
- </div>
-</div>
-
-
-<div class="section-title" style="margin-left: 30px;">Features</div>
-
-
-<div class="button-container">
-   <button class="dash-btn" style="margin-left:30px">
-     <i class="fa-solid fa-location-arrow"></i>
-   <a href="nav.html">
-     <span>Navigation</span>
-     <p>Get turn-by-turn audio directions</p>
-   </a>
-   </button>
-
-
-   <button class="dash-btn" style="margin-right:30px;">
+<div class="search-container">
+   <input type="text" class="search-input" placeholder="Enter destination address">
+   <button class="search-btn">
      <i class="fa-solid fa-microphone"></i>
-     <span>Voice Commands</span>
-     <p>Control the website with your voice</p>
    </button>
-</div>
+   </div>
+   <center>
 
 
-<div class="button-container">
-   <button class="dash-btn" style="margin-left:30px">
-     <i class="fa-solid fa-eye"></i>
-     <span>Object Detection</span>
-     <p>Identify the objects around you</p>
+   <button class="search-btn" style="margin-bottom: 20px; margin-top: 20px; width: 350px;">
+   <i class="fa-solid fa-magnifying-glass"></i>
+   <span>Find Route</span>
    </button>
+   </center>
 
 
-   <button class="dash-btn" style="margin-right:30px;">
-     <i class="fa-solid fa-font"></i>
-     <a href="textrecognition.html">
-     <span>Text Recognition</span>
-     <p>Read text from images</p>
-   </a>
+
+
+ <!-- Quick actions -->
+ <div class="quick-actions">
+   <button class="action-btn location">
+     <i class="fa-solid fa-location-crosshairs"></i> Use Current Location
    </button>
-</div>
-
-
-<div class="button-container">
-   <button class="dash-btn"  style="margin-left:30px">
-     <i class="fa-solid fa-map-pin"></i>
-     <span>Saved Places</span>
-     <p>Quick access to favorite locations</p>
+   <button class="action-btn saved">
+     <i class="fa-solid fa-map-pin"></i> Saved Places
    </button>
+ </div>
 
 
-   <button class="dash-btn" style="margin-right:30px;">
-     <i class="fa-solid fa-phone"></i>
-     <span>Emergency Contacts</span>
-     <p>Manage your emergency contacts</p>
+ <!-- Recent destinations -->
+ <div class="section-title">Recent Destinations</div>
+   <div class="destinations">
+     <center>
+   <button class="destination">
+     <i class="fa-solid fa-house"></i>
+     <span>Home</span>
    </button>
-</div>
-
-
-<script>
-feather.replace();
-
-
-
-
-function selectCard(element){
- document.querySelectorAll('.card').forEach(card=>{
-   card.classList.remove('active');
- });
- element.classList.add('active');
-}
-
-
-
-
-function logout(){
- localStorage.removeItem("isLoggedIn");
- window.location.href = "MAIN.html";
-}
-</script>
-
-
+   <button class="destination">
+     <i class="fa-solid fa-briefcase"></i>
+     <span>Work</span>
+   </button>
+   <button class="destination">
+     <i class="fa-solid fa-tree"></i>
+     <span>Central Park</span>
+   </button>
+ </center>
+ </div>
 </body>
 </html>
 
