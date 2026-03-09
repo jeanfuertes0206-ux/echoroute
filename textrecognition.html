@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EchoRoute - Text Recognition</title>
+<style>
+  /* Title bar */
+  .title-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 35px;
+  }
+  .title-bar i {
+    font-size: 30px;
+    margin-right: 30px;
+    cursor: pointer;
+  }
+  .title-bar h2 {
+    margin: 0;
+  }
+
+
+
+
+  header {
+    position: sticky; 
+    top: 0;
+    left: 0;
+    padding: 5px;
+    width: 100%;
+    font-size: 15px;
+    font-weight: bold;
+    z-index: 50;
+    backdrop-filter: blur(8px);
+  }
+
+
+
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #e3e5e8;
+    margin: 80px;
+    padding: 20px;
+    text-align: center;
+  }
+
+
+
+
+  video, canvas {
+    width: 80%;
+    height: 400px;
+    max-width: 600px;
+    margin: 20px;
+    border: 1px solid #333;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+
+
+
+  p {
+    font-size: 20px;
+  }
+
+
+
+
+a {
+
+
+
+
+}
+
+
+
+
+  button {
+    padding: 12px;
+    background: #3498db;
+    color: #000;
+    border: none;
+    border-radius: 15px; /* more rounded corners */
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    margin: 5px;
+  }
+
+
+
+
+  button:hover {
+    background: #2980b9;
+    transition: 0.5s ease;
+  }
+
+
+
+
+  #ocrResult {
+    margin-top: 20px;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #333;
+    border-radius: 8px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    white-space: pre-line; /* preserve line breaks */
+  }
+</style>
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<!-- Title bar -->
+<header>
+  <div class="title-bar">
+    <a href="dashboard.html">
+      <i class="fa-solid fa-arrow-left"></i>
+    </a>
+    <h2>Text Recognition</h2>
+  </div>
+</header>
+
+
+
+
+<p>Read Text From Images</p>
+
+
+
+
+<video id="camera" autoplay playsinline></video>
+<br>
+<button id="switchBtn" style="width: 100px;">Switch Camera</button>
+<button id="captureBtn" style="border-radius: 50%; height: 60px; width: 60px;">
+  <i class="fa-solid fa-camera" style="font-size: 30px;"></i>
+</button>
+<button id="scanBtn" style="width: 100px">Scan Text</button>
+
+
+
+
+<center>
+  <canvas id="snapshot" style="display:none;"></canvas>
+  <div id="ocrResult"></div>
+  <!-- New buttons -->
+  <button id="readBtn">Read Aloud</button>
+  <button id="clearBtn">
+<i class="fa-solid fa-check"></i></button>
+</center>
+
+
+
+
+<!-- Load Tesseract.js from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script>
+  const video = document.getElementById('camera');
+  const canvas = document.getElementById('snapshot');
+  const captureBtn = document.getElementById('captureBtn');
+  const switchBtn = document.getElementById('switchBtn');
+  const scanBtn = document.getElementById('scanBtn');
+  const ocrResult = document.getElementById('ocrResult');
+  const readBtn = document.getElementById('readBtn');
+  const clearBtn = document.getElementById('clearBtn');
+
+
+
+
+  let currentFacingMode = "user"; // "user" = front, "environment" = back
+  let stream;
+
+
+
+
+  async function startCamera() {
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop());
+    }
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: currentFacingMode }
+      });
+      video.srcObject = stream;
+    } catch (err) {
+      alert("Camera access denied or unavailable: " + err.message);
+    }
+  }
+
+
+
+
+  // Switch between front and back
+  switchBtn.addEventListener('click', () => {
+    currentFacingMode = currentFacingMode === "user" ? "environment" : "user";
+    startCamera();
+  });
+
+
+
+
+  // Capture snapshot
+  captureBtn.addEventListener('click', () => {
+    const context = canvas.getContext('2d');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    canvas.style.display = "block";
+  });
+
+
+
+
+  // Read aloud button
+  readBtn.addEventListener('click', () => {
+    const text = ocrResult.textContent.replace("Detected text:\n", "");
+    if (text.trim() !== "") {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      speechSynthesis.speak(utterance);
+    } else {
+      alert("No text to read aloud.");
+    }
+  });
+
+
+
+
+  // Clear/Delete button
+  clearBtn.addEventListener('click', () => {
+    ocrResult.textContent = "";
+    canvas.style.display = "none";
+    speechSynthesis.cancel(); // stop any ongoing speech
+  });
+
+
+
+
+  // Start with front camera
+  startCamera();
+</script>
+</body>
+</html>

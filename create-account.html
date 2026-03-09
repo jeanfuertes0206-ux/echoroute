@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EchoRoute - Create Account</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/feather-icons"></script>
+
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+
+    body {
+      background: #f3f4f6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 30px;
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      color: #0e8a94;
+      font-size: 18px;
+    }
+
+
+    .container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+
+    .register-box {
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+
+
+    .register-box img {
+      width: 60px;
+      margin-bottom: 15px;
+    }
+
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+
+    form {
+      text-align: left;
+    }
+
+
+    label {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+
+    .input-group {
+      margin-top: 6px;
+      margin-bottom: 16px;
+    }
+
+
+    input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid #d1d5db;
+      background: #e5e7eb;
+      outline: none;
+      font-size: 14px;
+    }
+
+
+    input:focus {
+      border: 2px solid #0e8a94;
+      background: #ffffff;
+    }
+
+
+    .helper-text {
+      font-size: 12px;
+      color: #777;
+      margin-top: -8px;
+      margin-bottom: 12px;
+    }
+
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      border: none;
+      background: #0e8a94;
+      color: white;
+      font-weight: 600;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      margin-top: 8px;
+    }
+
+
+    .btn:hover {
+      background: #0c737c;
+    }
+
+
+    .footer-text {
+      text-align: center;
+      margin-top: 22px;
+      font-size: 14px;
+      color: #555;
+    }
+
+
+    .footer-text a {
+      color: #0e8a94;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+
+    .footer-text a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+
+  <div class="top-bar">
+    <div class="logo">
+      <i data-feather="eye"></i>
+      EchoRoute
+    </div>
+    <i data-feather="user-plus"></i>
+  </div>
+
+
+  <div class="container">
+    <div class="register-box">
+
+
+      <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Logo">
+
+
+      <h1>Join EchoRoute</h1>
+      <p class="subtitle">Create an account to start navigating safely</p>
+
+
+      <form id="registerForm">
+
+
+        <label>Full Name</label>
+        <div class="input-group">
+          <input type="text" id="name" placeholder="Enter your full name" required>
+        </div>
+
+
+        <label>Email Address</label>
+        <div class="input-group">
+          <input type="email" id="email" placeholder="Enter your email" required>
+        </div>
+
+
+        <label>Password</label>
+        <div class="input-group">
+          <input type="password" id="password" placeholder="Enter your password" required minlength="6">
+        </div>
+        <div class="helper-text">Must be at least 6 characters</div>
+
+
+        <label>Confirm Password</label>
+        <div class="input-group">
+          <input type="password" id="confirmPassword" placeholder="Confirm your password" required minlength="6">
+        </div>
+
+
+        <button type="submit" class="btn">
+          <i data-feather="user-plus"></i>
+          Create Account
+          <i data-feather="arrow-right"></i>
+        </button>
+
+
+      </form>
+
+
+      <div class="footer-text">
+        Already have an account?<br>
+        <a href="MAIN.html">Sign In →</a>
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <script>
+    feather.replace();
+
+
+    const form = document.getElementById("registerForm");
+
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+
+      const existingUser = JSON.parse(localStorage.getItem("echorouteUser"));
+
+
+      if (existingUser && existingUser.email === email) {
+        alert("An account with this email already exists.");
+        return;
+      }
+
+
+      const user = {
+        name: name,
+        email: email,
+        password: password
+      };
+
+
+      localStorage.setItem("echorouteUser", JSON.stringify(user));
+
+
+      alert("Account created successfully!");
+      window.location.href = "MAIN.html";
+    });
+  </script>
+
+
+</body>
+</html>
